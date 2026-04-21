@@ -1,0 +1,276 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class PeriodosHelper {
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Crear un nuevo período
+  static Future<bool> createPeriodo({
+    required String nombre,
+    required DateTime fechaInicio,
+    required DateTime fechaFin,
+    bool activo = false,
+  }) async {
+    try {
+      // Verificar si ya existe un período con ese nombre
+      final existingPeriodo = await _firestore
+          .collection('periodos')
+          .where('nombre', isEqualTo: nombre.trim())
+          .get();
+
+      if (existingPeriodo.docs.isNotEmpty) {
+        print('Ya existe un período con ese nombre');
+        return false;
+      }
+
+      // ✅ CAMBIADO: Ya NO se desactivan los demás períodos
+      // Se permite que múltiples períodos estén activos
+
+      // Crear el período
+      await _firestore.collection('periodos').add({
+        'nombre': nombre.trim(),
+        'fechaInicio': Timestamp.fromDate(fechaInicio),
+        'fechaFin': Timestamp.fromDate(fechaFin),
+        'activo': activo,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+
+      print('Período creado exitosamente: $nombre');
+      return true;
+    } catch (e) {
+      print('Error creando período: $e');
+      return false;
+    }
+  }
+
+  // Obtener todos los períodos
+  static Future<List<Map<String, dynamic>>> getPeriodos() async {
+    try {
+      final periodosQuery = await _firestore
+          .collection('periodos')
+          .orderBy('createdAt', descending: true)
+          .get();
+
+      return periodosQuery.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id;
+        return data;
+      }).toList();
+    } catch (e) {
+      print('Error obteniendo períodos: $e');
+      return [];
+    }
+  }
+
+  // ✅ NUEVO: Obtener solo períodos activos
+  static Future<List<Map<String, dynamic>>> getPeriodosActivos() async {
+    try {
+      final periodosQuery = await _firestore
+          .collection('periodos')
+          .where('activo', isEqualTo: true)
+          // ❌ REMOVIDO: .orderBy('createdAt', descending: true)
+          .get();
+
+      // Ordenar manualmente en memoria
+      final periodos = periodosQuery.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id;
+        return data;
+      }).toList();
+
+      // Ordenar por createdAt si existe
+      periodos.sort((a, b) {
+        final aTime = a['createdAt'] as Timestamp?;
+        final bTime = b['createdAt'] as Timestamp?;
+        if (aTime == null || bTime == null) return 0;
+        return bTime.compareTo(aTime); // Descendente
+      });
+
+      return periodos;
+    } catch (e) {
+      print('Error obteniendo períodos activos: $e');
+      return [];
+    }
+  }
+
+  // ✅ MODIFICADO: Obtener UN período activo (mantener por compatibilidad)
+  static Future<Map<String, dynamic>?> getPeriodoActivo() async {
+    try {
+      final querySnapshot = await _firestore
+          .collection('periodos')
+          .where('activo', isEqualTo: true)
+          .orderBy('createdAt', descending: true)
+          .limit(1)
+          .get();
+
+      if (querySnapshot.docs.isEmpty) return null;
+
+      final doc = querySnapshot.docs.first;
+      return {'id': doc.id, ...doc.data()};
+    } catch (e) {
+      print('Error al obtener período activo: $e');
+      return null;
+    }
+  }
+
+  static Stream<QuerySnapshot> getPeriodosStream() {
+    return _firestore
+        .collection('periodos')
+        .orderBy('fechaInicio', descending: true)
+        .snapshots();
+  }
+
+  // Actualizar un período
+  static Future<bool> updatePeriodo({
+    required String periodoId,
+    String? nombre,
+    DateTime? fechaInicio,
+    DateTime? fechaFin,
+    bool? activo,
+  }) async {
+    try {
+      final updateData = <String, dynamic>{
+        'updatedAt': FieldValue.serverTimestamp(),
+      };
+
+      if (nombre != null && nombre.isNotEmpty) {
+        // Verificar si ya existe otro período con ese nombre
+        final existingPeriodo = await _firestore
+            .collection('periodos')
+            .where('nombre', isEqualTo: nombre.trim())
+            .get();
+
+        if (existingPeriodo.docs.isNotEmpty &&
+            existingPeriodo.docs.first.id != periodoId) {
+          print('Ya existe otro período con ese nombre');
+          return false;
+        }
+        updateData['nombre'] = nombre.trim();
+      }
+
+      if (fechaInicio != null) {
+        updateData['fechaInicio'] = Timestamp.fromDate(fechaInicio);
+      }
+
+      if (fechaFin != null) {
+        updateData['fechaFin'] = Timestamp.fromDate(fechaFin);
+      }
+
+      if (activo != null) {
+        // ✅ CAMBIADO: Ya NO se desactivan los demás períodos
+        // Simplemente se actualiza el estado de este período
+        updateData['activo'] = activo;
+      }
+
+      await _firestore.collection('periodos').doc(periodoId).update(updateData);
+      print('Período actualizado exitosamente');
+      return true;
+    } catch (e) {
+      print('Error actualizando período: $e');
+      return false;
+    }
+  }
+
+  // ✅ MODIFICADO: Activar un período (ya NO desactiva los demás)
+  static Future<bool> activarPeriodo(String periodoId) async {
+    try {
+      await _firestore.collection('periodos').doc(periodoId).update({
+        'activo': true,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+      print('Período activado exitosamente');
+      return true;
+    } catch (e) {
+      print('Error activando período: $e');
+      return false;
+    }
+  }
+
+  // Desactivar un período
+  static Future<bool> desactivarPeriodo(String periodoId) async {
+    try {
+      await _firestore.collection('periodos').doc(periodoId).update({
+        'activo': false,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+      print('Período desactivado exitosamente');
+      return true;
+    } catch (e) {
+      print('Error desactivando período: $e');
+      return false;
+    }
+  }
+
+  // Eliminar un período
+  static Future<bool> deletePeriodo(String periodoId) async {
+    try {
+      await _firestore.collection('periodos').doc(periodoId).delete();
+      print('Período eliminado exitosamente');
+      return true;
+    } catch (e) {
+      print('Error eliminando período: $e');
+      return false;
+    }
+  }
+
+  // ✅ ELIMINADA: La función _desactivarTodosPeriodos ya no es necesaria
+
+  // Buscar períodos por nombre o año
+  static Future<List<Map<String, dynamic>>> searchPeriodos(
+    String searchTerm,
+  ) async {
+    try {
+      final periodosQuery = await _firestore
+          .collection('periodos')
+          .orderBy('createdAt', descending: true)
+          .get();
+
+      final periodos = periodosQuery.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id;
+        return data;
+      }).toList();
+
+      if (searchTerm.isEmpty) return periodos;
+
+      final searchLower = searchTerm.toLowerCase();
+      return periodos.where((periodo) {
+        final nombre = (periodo['nombre'] ?? '').toString().toLowerCase();
+        return nombre.contains(searchLower);
+      }).toList();
+    } catch (e) {
+      print('Error buscando períodos: $e');
+      return [];
+    }
+  }
+
+  // ✅ MODIFICADO: Verificar si hay períodos activos (plural)
+  static Future<bool> hayPeriodosActivos() async {
+    try {
+      final periodoQuery = await _firestore
+          .collection('periodos')
+          .where('activo', isEqualTo: true)
+          .limit(1)
+          .get();
+
+      return periodoQuery.docs.isNotEmpty;
+    } catch (e) {
+      print('Error verificando períodos activos: $e');
+      return false;
+    }
+  }
+
+  // ✅ NUEVO: Contar cuántos períodos activos hay
+  static Future<int> contarPeriodosActivos() async {
+    try {
+      final periodoQuery = await _firestore
+          .collection('periodos')
+          .where('activo', isEqualTo: true)
+          .get();
+
+      return periodoQuery.docs.length;
+    } catch (e) {
+      print('Error contando períodos activos: $e');
+      return 0;
+    }
+  }
+}

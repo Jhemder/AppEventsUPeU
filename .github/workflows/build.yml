@@ -34,8 +34,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=TzShaka_AppEventos
-            -Dsonar.organization=tzshaka
+            -Dsonar.projectKey=Jhemder_AppEventsUPeU
+            -Dsonar.organization=jhemder
             -Dsonar.sources=lib
             -Dsonar.tests=test
             -Dsonar.dart.lcov.reportPaths=coverage/lcov.info

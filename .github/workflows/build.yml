@@ -1,42 +1,28 @@
-name: Build
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+name: Flutter Test & Coverage
+
+on: [push, pull_request]
 
 jobs:
-  sonarqube:
-    name: SonarQube
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  build:
+    runs-on: ubuntu-latest
 
-      - name: Setup Flutter
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
           channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run tests with coverage
-        run: flutter test --coverage
-        continue-on-error: true
+      - name: Run Tests with Coverage
+        run: flutter test --coverage # Esto generará el archivo lcov.info
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5 # Actualizado a v5 como te pide la página
         with:
-          args: >
-            -Dsonar.projectKey=Jhemder_AppEventsUPeU
-            -Dsonar.organization=jhemder
-            -Dsonar.sources=lib
-            -Dsonar.tests=test
-            -Dsonar.dart.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/firebase_options.dart
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          fail_ci_if_error: true

@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         _handleDeepLink(uri.toString());
       },
       onError: (err) {
-        print('Error en deep link: $err');
+        print('Error en la deep link: $err');
       },
     );
 

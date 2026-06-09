@@ -680,7 +680,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
       });
 
       _showSnackBar(
-        'Se encontraron ${_ganadores.length} ganador(es) en ${_totalEventos} evento(s)',
+        'Se encontraron ${_ganadores.length} ganador(es) en $_totalEventos evento(s)',
         isSuccess: true,
       );
     } catch (e) {
@@ -749,7 +749,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
 
     IconData medalla = Icons.emoji_events;
     Color colorMedalla = Colors.amber;
-    String textoLugar = '${posicion}° Lugar';
+    String textoLugar = '$posicion° Lugar';
 
     if (posicion == 1) {
       medalla = Icons.emoji_events;
@@ -1247,7 +1247,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
                                       categoria,
                                       ganadores,
                                     );
-                                  }).toList(),
+                                  }),
                               ],
                             ],
                           ),
@@ -1308,7 +1308,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
 
           // ✅ Filtro Filial
           DropdownButtonFormField<String>(
-            value: _filialSeleccionada,
+            initialValue: _filialSeleccionada,
             isExpanded: true,
             decoration: InputDecoration(
               labelText: 'Seleccionar Filial',
@@ -1351,7 +1351,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
           if (_filialSeleccionada != null) ...[
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _facultadSeleccionada,
+              initialValue: _facultadSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Seleccionar Facultad',
@@ -1388,7 +1388,7 @@ class _GanadoresEstudiantesScreenState extends State<GanadoresEstudiantesScreen>
           if (_facultadSeleccionada != null) ...[
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _carreraSeleccionada,
+              initialValue: _carreraSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Seleccionar Carrera',

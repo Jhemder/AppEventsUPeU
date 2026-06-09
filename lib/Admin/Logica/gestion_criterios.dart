@@ -221,8 +221,14 @@ class Rubrica {
 
 /// Servicio actualizado para usar FilialesService
 class RubricasService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FilialesService _filialesService = FilialesService();
+  RubricasService({
+    FirebaseFirestore? firestore,
+    FilialesService? filialesService,
+  })  : _firestore = firestore ?? FirebaseFirestore.instance,
+        _filialesService = filialesService ?? FilialesService();
+
+  final FirebaseFirestore _firestore;
+  final FilialesService _filialesService;
   final String _collection = 'rubricas';
 
   // ✅ Cache para estructura de filiales

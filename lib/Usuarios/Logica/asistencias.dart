@@ -26,7 +26,7 @@ class _AsistenciasScreenState extends State<AsistenciasScreen>
   String? _studentCiclo;
   String? _studentGrupo;
 
-  List<Map<String, dynamic>> _eventosConAsistencias = [];
+  final List<Map<String, dynamic>> _eventosConAsistencias = [];
   List<Map<String, dynamic>> _asistenciasFiltradas = [];
 
   late AnimationController _animationController;

@@ -543,7 +543,7 @@ class _CrearJuradosScreenState extends State<CrearJuradosScreen> {
 
                         // ✅ NUEVO: Filial
                         DropdownButtonFormField<String>(
-                          value: _filialSeleccionada,
+                          initialValue: _filialSeleccionada,
                           isExpanded: true,
                           icon: Icon(
                             Icons.arrow_drop_down,
@@ -614,7 +614,7 @@ class _CrearJuradosScreenState extends State<CrearJuradosScreen> {
 
                         // Facultad
                         DropdownButtonFormField<String>(
-                          value: _facultadSeleccionada,
+                          initialValue: _facultadSeleccionada,
                           isExpanded: true,
                           icon: Icon(
                             Icons.arrow_drop_down,
@@ -713,7 +713,7 @@ class _CrearJuradosScreenState extends State<CrearJuradosScreen> {
 
                         // Carrera
                         DropdownButtonFormField<String>(
-                          value: _carreraSeleccionada,
+                          initialValue: _carreraSeleccionada,
                           isExpanded: true,
                           icon: Icon(
                             Icons.arrow_drop_down,

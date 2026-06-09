@@ -33,12 +33,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  flutter_launcher_icons: ^0.13.1
   integration_test:
     sdk: flutter
-
-  mockito: ^5.4.4
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+  mocktail: ^0.3.0        # ← cambiado de mockito a mocktail
   build_runner: ^2.4.13
   fake_cloud_firestore: ^3.1.0
 
@@ -57,9 +56,13 @@ flutter:
         - asset: assets/fonts/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-Bold.ttf
         - asset: assets/fonts/Montserrat-Italic.ttf
+
+    - family: Cinzel          # ← separado como su propia familia
+      fonts:
         - asset: assets/fonts/Cinzel-Regular.ttf
           weight: 700
-    - family: GreatVibes  
+
+    - family: GreatVibes
       fonts:
         - asset: assets/fonts/GreatVibes-Regular.ttf
 

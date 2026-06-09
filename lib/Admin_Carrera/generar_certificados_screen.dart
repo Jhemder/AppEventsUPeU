@@ -1238,7 +1238,6 @@ class _Campo extends StatelessWidget {
     required this.label,
     required this.icon,
     this.maxLines = 1,
-    this.hint,
     this.keyboardType,
     this.onChanged,
   });

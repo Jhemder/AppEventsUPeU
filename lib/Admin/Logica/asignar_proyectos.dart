@@ -42,7 +42,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
   List<Map<String, dynamic>> _juradosDisponibles = [];
   List<Map<String, dynamic>> _proyectosDisponibles = [];
   Map<String, List<Map<String, dynamic>>> _proyectosPorCategoria = {};
-  Set<String> _proyectosSeleccionados = {};
+  final Set<String> _proyectosSeleccionados = {};
 
   // ✅ OPTIMIZACIÓN: Estado de carga inicial
   bool _isLoadingInitial = true;
@@ -1029,7 +1029,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
 
             // ✅ Filial
             DropdownButtonFormField<String>(
-              value: _filialSeleccionada,
+              initialValue: _filialSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Filial',
@@ -1061,7 +1061,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
             if (_filialSeleccionada != null) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _facultadSeleccionada,
+                initialValue: _facultadSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Facultad',
@@ -1091,7 +1091,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
                 _carrerasDisponibles.isNotEmpty) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _carreraSeleccionada,
+                initialValue: _carreraSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Carrera (opcional)',
@@ -1184,7 +1184,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _eventoSeleccionado,
+              initialValue: _eventoSeleccionado,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Evento',
@@ -1250,7 +1250,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _juradoSeleccionado,
+              initialValue: _juradoSeleccionado,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Jurado',
@@ -1364,7 +1364,7 @@ class _AsignarProyectosScreenState extends State<AsignarProyectosScreen> {
               )
             else
               DropdownButtonFormField<String>(
-                value: _rubricaSeleccionada?.id,
+                initialValue: _rubricaSeleccionada?.id,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Selecciona una rúbrica',

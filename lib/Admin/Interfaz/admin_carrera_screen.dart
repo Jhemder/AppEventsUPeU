@@ -9,8 +9,6 @@ import '/login.dart';
 
 // Rutas — importa las pantallas destino según tu estructura real
 import '/admin/logica/registro_estudiantes.dart';
-import '/admin/logica/reportes.dart';
-import '/admin/logica/evaluaciones.dart';
 // import 'editar_admin_carrera.dart';
 // import 'crear_eventos_carrera_screen.dart';
 // import 'gestion_grupos_carrera_screen.dart';

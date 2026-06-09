@@ -62,7 +62,9 @@ class _GestionRubricasCarreraScreenState
       final filtradas = todas.where((r) {
         if (r.filial != _filialId) return false;
         if (r.facultad.trim().toLowerCase() !=
-            (_facultad ?? '').trim().toLowerCase()) return false;
+            (_facultad ?? '').trim().toLowerCase()) {
+          return false;
+        }
         if (_carreraNombre != null && _carreraNombre!.isNotEmpty) {
           if (r.carrera != null && r.carrera!.isNotEmpty) {
             return r.carrera!.trim().toLowerCase() ==
@@ -429,9 +431,9 @@ class _CrearRubricaCarreraScreenState
       TextEditingController(text: '20');
   final RubricasService _service = RubricasService();
 
-  List<SeccionRubrica> _secciones = [];
+  final List<SeccionRubrica> _secciones = [];
   List<Map<String, dynamic>> _juradosDisponibles = [];
-  List<String> _juradosSeleccionados = [];
+  final List<String> _juradosSeleccionados = [];
   bool _isLoading = false;
 
   @override

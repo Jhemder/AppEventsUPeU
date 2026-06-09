@@ -516,7 +516,7 @@ class _GestionJuradosCarreraScreenState
                                 try {
                                   if (isEditing) {
                                     await _actualizarJurado(
-                                      id: jurado!['id'],
+                                      id: jurado['id'],
                                       nombre: nombre,
                                       usuario: usuario,
                                       password: password,

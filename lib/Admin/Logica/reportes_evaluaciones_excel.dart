@@ -110,7 +110,7 @@ class ReportesEvaluacionesExcelService {
         sufijo = '_${_limpiarNombre(carrera)}';
       }
 
-      final fileName = 'Reporte_${nombreEvento}${sufijo}_$timestamp.xlsx';
+      final fileName = 'Reporte_$nombreEvento${sufijo}_$timestamp.xlsx';
 
       Directory? directory;
       String rutaCompleta = '';

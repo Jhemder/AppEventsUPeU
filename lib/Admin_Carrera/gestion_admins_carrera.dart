@@ -631,7 +631,7 @@ class __DialogoCrearAdminState extends State<_DialogoCrearAdmin> {
 
                       // Filial
                       DropdownButtonFormField<String>(
-                        value: _selectedFilial,
+                        initialValue: _selectedFilial,
                         decoration: InputDecoration(
                           labelText: 'Filial (Sede)',
                           prefixIcon: const Icon(Icons.location_city),
@@ -653,7 +653,7 @@ class __DialogoCrearAdminState extends State<_DialogoCrearAdmin> {
                       if (_selectedFilial != null) ...[
                         const SizedBox(height: 14),
                         DropdownButtonFormField<String>(
-                          value: _selectedFacultad,
+                          initialValue: _selectedFacultad,
                           decoration: InputDecoration(
                             labelText: 'Facultad',
                             prefixIcon: const Icon(Icons.business),
@@ -672,7 +672,7 @@ class __DialogoCrearAdminState extends State<_DialogoCrearAdmin> {
                       if (_selectedFacultad != null) ...[
                         const SizedBox(height: 14),
                         DropdownButtonFormField<String>(
-                          value: _selectedCarrera,
+                          initialValue: _selectedCarrera,
                           decoration: InputDecoration(
                             labelText: 'Carrera',
                             prefixIcon: const Icon(Icons.school),
@@ -1012,7 +1012,7 @@ class __DialogoEditarAdminState extends State<_DialogoEditarAdmin> {
                               value: _activo,
                               onChanged: (v) =>
                                   setState(() => _activo = v),
-                              activeColor: Colors.green,
+                              activeThumbColor: Colors.green,
                             ),
                           ],
                         ),
@@ -1065,7 +1065,7 @@ class __DialogoEditarAdminState extends State<_DialogoEditarAdmin> {
 
                       // Filial
                       DropdownButtonFormField<String>(
-                        value: _selectedFilial,
+                        initialValue: _selectedFilial,
                         decoration: InputDecoration(
                           labelText: 'Filial (Sede)',
                           prefixIcon: const Icon(Icons.location_city),
@@ -1087,7 +1087,7 @@ class __DialogoEditarAdminState extends State<_DialogoEditarAdmin> {
                       if (_selectedFilial != null) ...[
                         const SizedBox(height: 14),
                         DropdownButtonFormField<String>(
-                          value: _selectedFacultad,
+                          initialValue: _selectedFacultad,
                           decoration: InputDecoration(
                             labelText: 'Facultad',
                             prefixIcon: const Icon(Icons.business),
@@ -1106,7 +1106,7 @@ class __DialogoEditarAdminState extends State<_DialogoEditarAdmin> {
                       if (_selectedFacultad != null) ...[
                         const SizedBox(height: 14),
                         DropdownButtonFormField<String>(
-                          value: _selectedCarrera,
+                          initialValue: _selectedCarrera,
                           decoration: InputDecoration(
                             labelText: 'Carrera',
                             prefixIcon: const Icon(Icons.school),

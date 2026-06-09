@@ -95,8 +95,9 @@ class AsistenciasExcel {
 
       if (cicloFiltro != null) filtros.add('Ciclo $cicloFiltro');
       if (grupoFiltro != null) filtros.add('Grupo $grupoFiltro');
-      if (terminoBusqueda != null && terminoBusqueda.isNotEmpty)
+      if (terminoBusqueda != null && terminoBusqueda.isNotEmpty) {
         filtros.add('Búsqueda: "$terminoBusqueda"');
+      }
 
       filtrosTexto += filtros.join(' | ');
 
@@ -704,7 +705,7 @@ class AsistenciasExcel {
         if (grupoFiltro != null) sufijo += '_G$grupoFiltro';
       }
 
-      final fileName = 'Asistencias_${nombreCarrera}${sufijo}_$timestamp.xlsx';
+      final fileName = 'Asistencias_$nombreCarrera${sufijo}_$timestamp.xlsx';
 
       // Obtener directorio de Documentos o Descargas
       Directory? directory;

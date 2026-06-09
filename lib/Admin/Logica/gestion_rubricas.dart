@@ -640,9 +640,9 @@ class _CrearRubricaScreenState extends State<CrearRubricaScreen> {
   final _puntajeMaximoController = TextEditingController(text: '20');
   final RubricasService _service = RubricasService();
 
-  List<SeccionRubrica> _secciones = [];
+  final List<SeccionRubrica> _secciones = [];
   List<Map<String, dynamic>> _juradosDisponibles = [];
-  List<String> _juradosSeleccionados = [];
+  final List<String> _juradosSeleccionados = [];
   bool _isLoading = false;
   String _nombreFilial = '';
 
@@ -980,7 +980,7 @@ class _CrearRubricaScreenState extends State<CrearRubricaScreen> {
                 },
                 onActualizar: () => setState(() {}),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
@@ -1110,7 +1110,7 @@ class _CrearRubricaScreenState extends State<CrearRubricaScreen> {
                     },
                   ),
                 );
-              }).toList(),
+              }),
           ],
         ),
       ),
@@ -1256,7 +1256,7 @@ class _SeccionWidgetState extends State<_SeccionWidget> {
                   },
                   onActualizar: widget.onActualizar,
                 );
-              }).toList(),
+              }),
               const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
@@ -1758,7 +1758,7 @@ class _EditarRubricaScreenState extends State<EditarRubricaScreen> {
                 },
                 onActualizar: () => setState(() {}),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
@@ -1854,7 +1854,7 @@ class _EditarRubricaScreenState extends State<EditarRubricaScreen> {
                     },
                   ),
                 );
-              }).toList(),
+              }),
           ],
         ),
       ),

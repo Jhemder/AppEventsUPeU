@@ -252,8 +252,9 @@ class _AsistenciasEstudiantesScreenState
           .doc(eventoId)
           .collection('asistencias')
           .get();
-      if (mounted)
+      if (mounted) {
         setState(() => _totalAsistencias = asistenciasSnap.docs.length);
+      }
     } catch (e) {
       print('Error cargando resumen: $e');
     } finally {
@@ -503,7 +504,7 @@ class _AsistenciasEstudiantesScreenState
 
             // Selector de Filial
             DropdownButtonFormField<String>(
-              value: _filialSeleccionada,
+              initialValue: _filialSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Filial / Sede',
@@ -555,7 +556,7 @@ class _AsistenciasEstudiantesScreenState
             if (_filialSeleccionada != null) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _facultadSeleccionada,
+                initialValue: _facultadSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Facultad',
@@ -595,7 +596,7 @@ class _AsistenciasEstudiantesScreenState
                 _carrerasDisponibles.isNotEmpty) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _carreraSeleccionada,
+                initialValue: _carreraSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Carrera (opcional)',
@@ -743,7 +744,7 @@ class _AsistenciasEstudiantesScreenState
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _eventoSeleccionado,
+              initialValue: _eventoSeleccionado,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Evento',

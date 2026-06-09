@@ -293,7 +293,7 @@ class _AdminScreenState extends State<AdminScreen> {
                 width: 65,
                 height: 65,
                 decoration: const BoxDecoration(
-                  color: const Color(0xFFF5F5F5),
+                  color: Color(0xFFF5F5F5),
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(13),

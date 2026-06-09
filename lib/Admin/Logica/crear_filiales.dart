@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'filiales_service.dart';
 
 class CrearFilialesScreen extends StatefulWidget {
-  const CrearFilialesScreen({super.key});
+  const CrearFilialesScreen({super.key, this.filialesService});
+
+  /// Permite inyectar un servicio en tests; en producción usa [FilialesService].
+  final FilialesService? filialesService;
 
   @override
   State<CrearFilialesScreen> createState() => _CrearFilialesScreenState();
 }
 
 class _CrearFilialesScreenState extends State<CrearFilialesScreen> {
-  final FilialesService _filialesService = FilialesService();
+  late final FilialesService _filialesService;
 
   Map<String, dynamic> _estructura = {};
   bool _isLoading = true;
@@ -18,6 +21,7 @@ class _CrearFilialesScreenState extends State<CrearFilialesScreen> {
   @override
   void initState() {
     super.initState();
+    _filialesService = widget.filialesService ?? FilialesService();
     _cargarDatos();
   }
 
@@ -31,12 +35,14 @@ class _CrearFilialesScreenState extends State<CrearFilialesScreen> {
       // ✅ PASO 2: Obtener estructura (usa caché si está disponible)
       final estructura = await _filialesService.getEstructuraCompleta();
 
+      if (!mounted) return;
       setState(() {
         _estructura = estructura;
         _isLoading = false;
       });
     } catch (e) {
       print('❌ Error cargando datos: $e');
+      if (!mounted) return;
       setState(() => _isLoading = false);
       _showMessage('Error al cargar datos', isError: true);
     }
@@ -48,6 +54,7 @@ class _CrearFilialesScreenState extends State<CrearFilialesScreen> {
         forceRefresh: true,
       );
 
+      if (!mounted) return;
       setState(() {
         _estructura = estructura;
       });
@@ -55,6 +62,7 @@ class _CrearFilialesScreenState extends State<CrearFilialesScreen> {
       _showMessage('Datos actualizados');
     } catch (e) {
       print('❌ Error refrescando datos: $e');
+      if (!mounted) return;
       _showMessage('Error al actualizar', isError: true);
     }
   }

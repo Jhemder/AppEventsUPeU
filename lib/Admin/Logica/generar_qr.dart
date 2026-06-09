@@ -218,7 +218,7 @@ class GenerarQRController {
 
     // ✅ Incluir sede solo si es válida
     if (sedeValida) {
-      qrData['sede'] = sede!.trim();
+      qrData['sede'] = sede.trim();
       print('✅ Sede incluida en QR: $sede');
     }
 

@@ -72,7 +72,7 @@ class _CrearEventosScreenState extends State<CrearEventosScreen>
       ]);
 
       final filiales = results[0] as List<Map<String, String>>;
-      final periodos = results[1] as List<Map<String, dynamic>>;
+      final periodos = results[1];
 
       setState(() {
         _filiales = filiales;
@@ -662,7 +662,7 @@ class _CrearEventosScreenState extends State<CrearEventosScreen>
         ],
       ),
       child: DropdownButtonFormField<String>(
-        value: value,
+        initialValue: value,
         isExpanded: true,
         decoration: InputDecoration(
           labelText: label,
@@ -855,7 +855,7 @@ class _ListaEventosScreenState extends State<ListaEventosScreen>
 
       setState(() {
         _filiales = results[0] as List<Map<String, String>>;
-        _periodos = results[1] as List<Map<String, dynamic>>;
+        _periodos = results[1];
         _isLoadingFilters = false;
       });
     } catch (e) {
@@ -980,7 +980,7 @@ showDialog(
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    value: editFilialId,
+                    initialValue: editFilialId,
                     isExpanded: true,
                     decoration: InputDecoration(
                       labelText: 'Filial',
@@ -1020,7 +1020,7 @@ showDialog(
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    value: editFacultad,
+                    initialValue: editFacultad,
                     isExpanded: true,
                     decoration: InputDecoration(
                       labelText: 'Facultad',
@@ -1059,7 +1059,7 @@ showDialog(
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    value: editCarreraId,
+                    initialValue: editCarreraId,
                     isExpanded: true,
                     decoration: InputDecoration(
                       labelText: 'Carrera',
@@ -1330,7 +1330,7 @@ showDialog(
 
                 // Filtro Filial
                 DropdownButtonFormField<String>(
-                  value: _filtroFilialId,
+                  initialValue: _filtroFilialId,
                   isExpanded: true,
                   decoration: InputDecoration(
                     labelText: 'Filial',
@@ -1376,7 +1376,7 @@ showDialog(
 
                 // Filtro Facultad
                 DropdownButtonFormField<String>(
-                  value: _filtroFacultad,
+                  initialValue: _filtroFacultad,
                   isExpanded: true,
                   decoration: InputDecoration(
                     labelText: 'Facultad',
@@ -1422,7 +1422,7 @@ showDialog(
 
                 // Filtro Carrera
                 DropdownButtonFormField<String>(
-                  value: _filtroCarreraId,
+                  initialValue: _filtroCarreraId,
                   isExpanded: true,
                   decoration: InputDecoration(
                     labelText: 'Carrera',
@@ -1461,7 +1461,7 @@ showDialog(
 
                 // Filtro Período
                 DropdownButtonFormField<String>(
-                  value: _filtroPeriodo,
+                  initialValue: _filtroPeriodo,
                   isExpanded: true,
                   decoration: InputDecoration(
                     labelText: 'Período Académico',

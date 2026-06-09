@@ -35,7 +35,7 @@ class _EstudiantesRegistradosScreenState
   final TextEditingController _editCorreoInstitucionalController =
       TextEditingController();
 
-  Set<String> _expandedStudents = {};
+  final Set<String> _expandedStudents = {};
   late AnimationController _fabAnimationController;
   late AnimationController _filterAnimationController;
 
@@ -455,7 +455,7 @@ class _EstudiantesRegistradosScreenState
     String Function(String)? itemLabel,
   }) {
     return DropdownButtonFormField<String>(
-      value: value,
+      initialValue: value,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(icon),

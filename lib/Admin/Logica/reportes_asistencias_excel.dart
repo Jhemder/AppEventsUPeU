@@ -1011,7 +1011,7 @@ class ReportesAsistenciasExcelService {
       }
 
       final fileName =
-          'Reporte_Asistencias_${nombreEvento}${sufijo}_$timestamp.xlsx';
+          'Reporte_Asistencias_$nombreEvento${sufijo}_$timestamp.xlsx';
 
       Directory? directory;
       if (Platform.isAndroid) {

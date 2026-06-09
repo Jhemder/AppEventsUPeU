@@ -772,7 +772,7 @@ class _EditarJuradosScreenState extends State<EditarJuradosScreen> {
 
                           // ✅ NUEVO: Filial
                           DropdownButtonFormField<String>(
-                            value: _filialSeleccionada,
+                            initialValue: _filialSeleccionada,
                             isExpanded: true,
                             decoration: InputDecoration(
                               labelText: 'Filial',
@@ -835,7 +835,7 @@ class _EditarJuradosScreenState extends State<EditarJuradosScreen> {
 
                           // Facultad
                           DropdownButtonFormField<String>(
-                            value: _facultadSeleccionada,
+                            initialValue: _facultadSeleccionada,
                             isExpanded: true,
                             decoration: InputDecoration(
                               labelText: 'Facultad',
@@ -886,7 +886,7 @@ class _EditarJuradosScreenState extends State<EditarJuradosScreen> {
 
                           // Carrera
                           DropdownButtonFormField<String>(
-                            value: _carreraSeleccionada,
+                            initialValue: _carreraSeleccionada,
                             isExpanded: true,
                             decoration: InputDecoration(
                               labelText: 'Carrera',

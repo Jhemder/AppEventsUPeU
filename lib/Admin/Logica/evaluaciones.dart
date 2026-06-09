@@ -523,7 +523,7 @@ class _EvaluacionesScreenState extends State<EvaluacionesScreen> {
                       const SizedBox(height: 12),
                       ...rubrica.secciones.map((seccion) {
                         return _buildSeccionDetalle(seccion, notas);
-                      }).toList(),
+                      }),
                     ] else
                       const Padding(
                         padding: EdgeInsets.all(20),
@@ -934,7 +934,7 @@ class _EvaluacionesScreenState extends State<EvaluacionesScreen> {
 
             // ✅ Filtro Filial
             DropdownButtonFormField<String>(
-              value: _filialSeleccionada,
+              initialValue: _filialSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Filial (Sede)',
@@ -964,7 +964,7 @@ class _EvaluacionesScreenState extends State<EvaluacionesScreen> {
             if (_filialSeleccionada != null) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _facultadSeleccionada,
+                initialValue: _facultadSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Facultad',
@@ -994,7 +994,7 @@ class _EvaluacionesScreenState extends State<EvaluacionesScreen> {
                 _carrerasDisponibles.isNotEmpty) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _carreraSeleccionada,
+                initialValue: _carreraSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Carrera (Opcional)',
@@ -1089,7 +1089,7 @@ class _EvaluacionesScreenState extends State<EvaluacionesScreen> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _eventoSeleccionado,
+              initialValue: _eventoSeleccionado,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Evento',

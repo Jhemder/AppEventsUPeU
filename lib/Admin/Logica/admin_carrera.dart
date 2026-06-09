@@ -5,7 +5,6 @@
 
 import 'package:flutter/foundation.dart';
 import '/prefs_helper.dart';
-import '/login.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Modelo de datos

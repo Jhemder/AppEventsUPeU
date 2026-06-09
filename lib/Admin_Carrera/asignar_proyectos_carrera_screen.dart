@@ -38,7 +38,7 @@ class _AsignarProyectosCarreraScreenState
   List<Map<String, dynamic>> _juradosDisponibles = [];
   List<Map<String, dynamic>> _proyectosDisponibles = [];
   Map<String, List<Map<String, dynamic>>> _proyectosPorCategoria = {};
-  Set<String> _proyectosSeleccionados = {};
+  final Set<String> _proyectosSeleccionados = {};
 
   bool _isLoadingSession = true;
   bool _isLoadingEventos = false;
@@ -191,7 +191,9 @@ class _AsignarProyectosCarreraScreenState
       final rubricasCompatibles = rubricasJurado.where((r) {
         if (r.filial != eventoFilial) return false;
         if (r.facultad.trim().toLowerCase() !=
-            eventoFacultad.trim().toLowerCase()) return false;
+            eventoFacultad.trim().toLowerCase()) {
+          return false;
+        }
         if (r.carrera != null && r.carrera!.isNotEmpty) {
           return eventoCarrera.trim().toLowerCase() ==
               r.carrera!.trim().toLowerCase();
@@ -656,7 +658,7 @@ class _AsignarProyectosCarreraScreenState
       child: _isLoadingEventos
           ? const Center(child: CircularProgressIndicator())
           : DropdownButtonFormField<String>(
-              value: _eventoSeleccionado,
+              initialValue: _eventoSeleccionado,
               isExpanded: true,
               decoration: _inputDecoration('Evento', Icons.event_note),
               items: _eventosDisponibles
@@ -681,7 +683,7 @@ class _AsignarProyectosCarreraScreenState
       child: _isLoadingJurados
           ? const Center(child: CircularProgressIndicator())
           : DropdownButtonFormField<String>(
-              value: _juradoSeleccionado,
+              initialValue: _juradoSeleccionado,
               isExpanded: true,
               decoration: _inputDecoration('Jurado', Icons.badge),
               items: _juradosDisponibles
@@ -741,7 +743,7 @@ class _AsignarProyectosCarreraScreenState
               ),
             )
           : DropdownButtonFormField<String>(
-              value: _rubricaSeleccionada?.id,
+              initialValue: _rubricaSeleccionada?.id,
               isExpanded: true,
               decoration: _inputDecoration('Rúbrica', Icons.assignment),
               items: _rubricasDelJurado

@@ -34,12 +34,12 @@ class _DatosExcelScreenState extends State<DatosExcelScreen>
   bool _fileSelected = false;
   String? _fileName;
   List<Map<String, dynamic>> _previewData = [];
-  List<Map<String, dynamic>> _allData = [];
+  final List<Map<String, dynamic>> _allData = [];
   int _totalRows = 0;
   int _successCount = 0;
   int _errorCount = 0;
   int _currentProgress = 0;
-  List<String> _errors = [];
+  final List<String> _errors = [];
   int _duplicatesDetected = 0;
 
   late AnimationController _animationController;

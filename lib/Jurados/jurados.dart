@@ -17,7 +17,7 @@ class _JuradosScreenState extends State<JuradosScreen> {
   String _userName = '';
   String _userId = '';
   bool _isLoading = true;
-  List<Map<String, dynamic>> _proyectosAsignados = [];
+  final List<Map<String, dynamic>> _proyectosAsignados = [];
   // ✅ NUEVO: Agrupar proyectos por rúbrica
   Map<String, List<Map<String, dynamic>>> _proyectosPorRubrica = {};
   Map<String, Rubrica> _rubricasMap = {};
@@ -438,7 +438,7 @@ class _JuradosScreenState extends State<JuradosScreen> {
             final rubrica = _rubricasMap[rubricaId]!;
 
             return _buildRubricaSection(rubrica, proyectos);
-          }).toList(),
+          }),
 
           const SizedBox(height: 20),
         ],
@@ -1408,7 +1408,7 @@ class _EvaluacionProyectoScreenState extends State<EvaluacionProyectoScreen> {
                           const SizedBox(height: 20),
                           ..._rubrica.secciones.map((seccion) {
                             return _buildSeccion(seccion, soloLectura);
-                          }).toList(),
+                          }),
                         ],
                       ),
               ),

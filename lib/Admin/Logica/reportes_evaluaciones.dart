@@ -775,7 +775,7 @@ class _ReportesEvaluacionesScreenState extends State<ReportesEvaluacionesScreen>
 
             // Filtro Facultad
             DropdownButtonFormField<String>(
-              value: _facultadSeleccionada,
+              initialValue: _facultadSeleccionada,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Facultad',
@@ -804,7 +804,7 @@ class _ReportesEvaluacionesScreenState extends State<ReportesEvaluacionesScreen>
                 _requiereCarrera(_facultadSeleccionada)) ...[
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _carreraSeleccionada,
+                initialValue: _carreraSeleccionada,
                 isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Carrera',
@@ -900,7 +900,7 @@ class _ReportesEvaluacionesScreenState extends State<ReportesEvaluacionesScreen>
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              value: _eventoSeleccionado,
+              initialValue: _eventoSeleccionado,
               isExpanded: true,
               decoration: InputDecoration(
                 labelText: 'Evento',

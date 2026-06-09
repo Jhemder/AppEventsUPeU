@@ -255,7 +255,7 @@ class _SeleccionarGanadorScreenState extends State<SeleccionarGanadorScreen>
         ),
       ),
       child: DropdownButtonFormField<String>(
-        value: value,
+        initialValue: value,
         isExpanded: true,
         decoration: InputDecoration(
           labelText: label,

@@ -597,7 +597,7 @@ class _GenerarQRScreenState extends State<GenerarQRScreen>
         border: Border.all(color: const Color(0xFFE0E7ED)),
       ),
       child: DropdownButtonFormField<String>(
-        value: value,
+        initialValue: value,
         isExpanded: true,
         decoration: InputDecoration(
           labelText: label,
@@ -633,7 +633,7 @@ class _GenerarQRScreenState extends State<GenerarQRScreen>
         border: Border.all(color: const Color(0xFFE0E7ED)),
       ),
       child: DropdownButtonFormField<String>(
-        value: _selectedEventId,
+        initialValue: _selectedEventId,
         isExpanded: true,
         decoration: const InputDecoration(
           labelText: 'Evento',

@@ -364,4 +364,10 @@ class PrefsHelper {
 
     return true;
   }
+
+  // Validación de sesión para CI/CD y AuthWrapper
+  static Future<bool> isSessionValid() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyIsLoggedIn) ?? false;
+  }
 }

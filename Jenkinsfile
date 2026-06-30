@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        // Esto ayuda a que Flutter no se quede colgado esperando inputs en la consola de Windows
         PUB_ENVIRONMENT = 'jenkins_ci'
+        // ¡ESTE ES EL TRUCO! Obliga a Flutter a usar copias en lugar de enlaces simbólicos
+        FLUTTER_SUPPRESS_ANALYTICS = 'true'
+        GLOBAL_FLUTTER_BUILD_WITH_SYMLINKS = 'false' 
     }
 
     stages {
@@ -24,7 +26,8 @@ pipeline {
         stage('Instalar Dependencias') {
             steps {
                 echo '=== Descargando paquetes del pubspec.yaml ==='
-                bat 'flutter pub get'
+                // Forzamos también el parámetro por comando por si acaso
+                bat 'flutter pub get --no-precompile'
             }
         }
 

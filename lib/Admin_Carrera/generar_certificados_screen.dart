@@ -1229,7 +1229,7 @@ class _Campo extends StatelessWidget {
   final String label;
   final IconData icon;
   final int maxLines;
-  final String? hint;
+  final String? hint; // variable declarada
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
 
@@ -1238,6 +1238,7 @@ class _Campo extends StatelessWidget {
     required this.label,
     required this.icon,
     this.maxLines = 1,
+    this.hint, // <--- ¡AQUÍ FALTA AGREGAR ESTO, MANO!
     this.keyboardType,
     this.onChanged,
   });
